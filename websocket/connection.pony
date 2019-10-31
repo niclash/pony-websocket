@@ -20,7 +20,7 @@ actor WebSocketConnection
     request = request'
     _notify.opened(this)
 
-  fun send_text(text: String val) =>
+  fun _send_text(text: String val) =>
     """
     Send text data (without fragmentation), text must be encoded in utf-8.
     """
@@ -28,10 +28,10 @@ actor WebSocketConnection
       _tcp.writev(Frame.text(text).build())
     end
 
-  be send_text_be(text: String val) =>
+  be send_text(text: String val) =>
     send_text(text)
 
-  fun send_binary(data: Array[U8] val) =>
+  fun _send_binary(data: Array[U8] val) =>
     """
     Send binary data (without fragmentation)
     """
@@ -39,10 +39,10 @@ actor WebSocketConnection
       _tcp.writev(Frame.binary(data).build())
     end
 
-  be send_binary_be(data: Array[U8] val) =>
+  be send_binary(data: Array[U8] val) =>
     send_binary(data)
 
-  fun ref close(code: U16 = 1000) =>
+  fun ref _close(code: U16 = 1000) =>
     """
     Initiate closure, all data sending is ignored after this call.
     """
@@ -50,9 +50,6 @@ actor WebSocketConnection
       _tcp.writev(Frame.close(code).build())
       _closed = true
     end
-
-  be close_be(code: U16 = 1000) =>
-    close(code)
 
   be _send_ping(data: Array[U8] val = []) =>
     """
@@ -70,7 +67,7 @@ actor WebSocketConnection
       _tcp.writev(Frame.pong(data).build())
     end
 
-  be _close(code: U16 = 100) =>
+  be close(code: U16 = 100) =>
     """
     Send a close frame and close the TCP connection, all data sending is
     ignored after this call.
