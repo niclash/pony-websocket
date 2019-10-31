@@ -24,12 +24,12 @@ actor ConnectionManager
 
   be broadcast_text(text: String) =>
     for c in _connections.values() do
-      c.send_text_be(text)
+      c.send_text(text)
     end
 
   be broadcast_binary(data: Array[U8] val) =>
     for c in _connections.values() do
-      c.send_binary_be(data)
+      c.send_binary(data)
     end
 
 class BroadcastListenNotify is WebSocketListenNotify

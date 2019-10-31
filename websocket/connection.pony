@@ -20,7 +20,7 @@ actor WebSocketConnection
     request = request'
     _notify.opened(this)
 
-  fun _send_text(text: String val) =>
+  be send_text(text: String val) =>
     """
     Send text data (without fragmentation), text must be encoded in utf-8.
     """
@@ -28,19 +28,13 @@ actor WebSocketConnection
       _tcp.writev(Frame.text(text).build())
     end
 
-  be send_text(text: String val) =>
-    send_text(text)
-
-  fun _send_binary(data: Array[U8] val) =>
+  be send_binary(data: Array[U8] val) =>
     """
     Send binary data (without fragmentation)
     """
     if not _closed then
       _tcp.writev(Frame.binary(data).build())
     end
-
-  be send_binary(data: Array[U8] val) =>
-    send_binary(data)
 
   fun ref _close(code: U16 = 1000) =>
     """
