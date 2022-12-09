@@ -1,5 +1,7 @@
 {
-  "packages": [],
+  "packages": [
+    "websocket"
+  ],
   "deps": [
     {
       "locator": "github.com/ponylang/net_ssl.git",
