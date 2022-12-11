@@ -8,7 +8,7 @@
       "version": "main"
     },
     {
-      "locator": "github.com/ponylang/crypto.git",
+      "locator": "github.com/niclash/crypto.git",
       "version": "main"
     }
   ],
