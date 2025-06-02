@@ -4,11 +4,11 @@
   ],
   "deps": [
     {
-      "locator": "github.com/niclash/net_ssl.git",
+      "locator": "github.com/ponylang/net_ssl.git",
       "version": "main"
     },
     {
-      "locator": "github.com/niclash/crypto.git",
+      "locator": "github.com/ponylang/crypto.git",
       "version": "main"
     }
   ],
